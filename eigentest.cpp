@@ -76,7 +76,7 @@ int main(int argc, char *argv[]) {
 	{
 		std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 		for (int i = 0; i < repeatCount; i++) {
-			residual2 = L.cwiseProduct(P).array().colwise().sum().array().square().mean();
+			residual2 = (L.transpose() * P).diagonal().array().square().mean();
 		}
 		std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 		auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
